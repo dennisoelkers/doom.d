@@ -1,0 +1,86 @@
+#+TITLE: My Doom Emacs config
+#+AUTHOR: Dennis Oelkers
+#+EMAIL: dennis@graylog.com
+#+LANGUAGE: en
+#+STARTUP: noinlineimages
+#+PROPERTY: header-args:emacs-lisp :tangle yes :cache yes :results silent :padline no
+#+OPTIONS: toc:nil
+#+EXPORT_FILE_NAME: README.md
+
+* My Doom Emacs config
+
+#+MARKDOWN: [[_TOC_]]
+
+** My personal information
+#+begin_src emacs-lisp
+(setq user-full-name "Dennis Oelkers"
+      user-mail-address "dennis@graylog.com")
+#+end_src
+
+** Doom Emacs Settings
+*** Doom Theme
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-vibrant)
+#+end_src
+
+** General Emacs Settings
+*** Enable ~visual-line-mode~ for text-modes by default
+#+begin_src emacs-lisp
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+#+end_src
+*** Unbind C-x C-z which suspends emacs
+#+begin_src emacs-lisp
+(global-unset-key (kbd "C-x C-z"))
+#+end_src
+
+*** New Buffers should be in org-mode
+#+begin_src emacs-lisp
+(setq-default major-mode 'org-mode)
+#+end_src
+
+*** Open Treemacs on startup
+#+begin_src emacs-lisp
+(use-package treemacs
+  :demand t
+  :config
+  (setq treemacs-follow-after-init t
+        treemacs-is-never-other-window t
+        treemacs-width 20)
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+  (treemacs-git-mode 'simple)
+  (treemacs-fringe-indicator-mode t)
+  :hook (after-init . treemacs)
+  :bind
+  (:map global-map
+   ("C-M-t"   . treemacs)))
+#+end_src
+
+
+
+** Org Mode Settings
+
+*** General Settings
+#+begin_src emacs-lisp
+(setq org-directory "~/org")
+#+end_src
+
+*** Capture Templates
+#+begin_src emacs-lisp
+(setq org-capture-templates
+        '(("s"
+           "Search Task"
+           entry
+           (file+headline "search.org" "Tasks Inbox")
+           "* TODO %^G %?\n:PROPERTIES:\n:Created: %U\n:END:\n\n")
+          ))
+#+end_src
+*** Todo Keywords
+#+begin_src emacs-lisp
+(setq org-todo-keywords '((type "TODO" "NEXT" "PROGRESS" "BLOCKED" "|" "DONE" "DELEGATED")))
+#+end_src
+*** Configure Reveal Root
+#+begin_src emacs-lisp
+(load-library "ox-reveal")
+(setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+#+end_src
