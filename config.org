@@ -38,26 +38,6 @@
 (setq-default major-mode 'org-mode)
 #+end_src
 
-*** Open Treemacs on startup
-#+begin_src emacs-lisp
-(use-package treemacs
-  :demand t
-  :config
-  (setq treemacs-follow-after-init t
-        treemacs-is-never-other-window t
-        treemacs-width 20)
-  (treemacs-follow-mode t)
-  (treemacs-filewatch-mode t)
-  (treemacs-git-mode 'simple)
-  (treemacs-fringe-indicator-mode t)
-  :hook (after-init . treemacs)
-  :bind
-  (:map global-map
-   ("C-M-t"   . treemacs)))
-#+end_src
-
-
-
 ** Org Mode Settings
 
 *** General Settings
