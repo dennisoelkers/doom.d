@@ -53,6 +53,11 @@
            entry
            (file+headline "search.org" "Tasks Inbox")
            "* TODO %^G %?\n:PROPERTIES:\n:Created: %U\n:END:\n\n")
+          ("f"
+           "Frontend Task"
+           entry
+           (file+headline "frontend.org" "Tasks Inbox")
+           "* TODO %^G %?\n:PROPERTIES:\n:Created: %U\n:END:\n\n")
           ))
 #+end_src
 *** Todo Keywords
