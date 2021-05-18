@@ -58,6 +58,8 @@
            entry
            (file+headline "frontend.org" "Tasks Inbox")
            "* TODO %^G %?\n:PROPERTIES:\n:Created: %U\n:END:\n\n")
+          ("a" "Appointment" entry (file  "gcal.org" )
+"* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
           ))
 #+end_src
 *** Todo Keywords
@@ -68,4 +70,19 @@
 #+begin_src emacs-lisp
 (load-library "ox-reveal")
 (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js")
+#+end_src
+** Google Calendar integration
+#+begin_src emacs-lisp
+(setq package-check-signature nil)
+
+
+(use-package org-gcal
+  :ensure t
+  :config
+  (setq org-gcal-client-id ,(auth-source-pass-get 'secret "gcal/client-id")
+        org-gcal-client-secret ,(auth-source-pass-get 'secret "gcal/client-secret")
+        org-gcal-file-alist '(("dennis@graylog.com" .  "~/org/gcal.org"))))
+
+(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
 #+end_src
