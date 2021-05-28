@@ -56,13 +56,24 @@
            entry
            (file+headline "search.org" "Tasks Inbox")
            "* TODO %^G %?\n:PROPERTIES:\n:Created: %U\n:END:\n\n")
+
           ("f"
            "Frontend Task"
            entry
            (file+headline "frontend.org" "Tasks Inbox")
            "* TODO %^G %?\n:PROPERTIES:\n:Created: %U\n:END:\n\n")
-          ("a" "Appointment" entry (file  "gcal.org" )
-"* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
+
+          ("g"
+           "General Development Task"
+           entry
+           (file+headline "todo.org" "Tasks Inbox")
+           "* TODO %^G %?\n:PROPERTIES:\n:Created: %U\n:END:\n\n")
+
+          ("a"
+           "Appointment"
+           entry
+           (file  "gcal.org" )
+           "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
           ))
 #+end_src
 *** Todo Keywords
