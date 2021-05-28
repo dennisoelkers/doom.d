@@ -42,7 +42,10 @@
 
 *** General Settings
 #+begin_src emacs-lisp
-(setq org-directory "~/org")
+(after! org
+  (setq org-directory "~/org")
+  (setq org-agenda-files
+        (quote ("~/org/todo.org" "~/org/gcal.org"))))
 #+end_src
 
 *** Capture Templates
